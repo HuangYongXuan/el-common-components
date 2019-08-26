@@ -91,7 +91,7 @@ export const handelHttpResponse = async (conditions, response, showSuccess = fal
 		return await response.data;
 	} else {
 		if (showError) {
-			Message.error(errorMsg || response.data.msg || response.data.data);
+			Message.error(errorMsg || response.data.msg || response.data.data || response.data.message);
 		}
 		return Promise.reject(response);
 	}
@@ -143,7 +143,7 @@ export const objectDiff = (object, diffObject) => {
  * @return {number}
  */
 export const getToMonthUnix = () => {
-	let dateStr = new Date().format('yyyy.mm.01');
+	let dateStr = new Date().format('yyyy.MM.01');
 	return new Date(dateStr).getTime();
 };
 
