@@ -1,5 +1,5 @@
 <template>
-    <el-date-picker :value="datetime" :type="type" :value-format="valueFormat" :format="format"
+    <el-date-picker v-model="datetime" :type="type" :value-format="valueFormat" :format="format"
                     :range-separator="rangeSeparator" :start-placeholder="startPlaceholder"
                     :end-placeholder="endPlaceholder" size="size" :disabled="disabled" :picker-options="options"
                     @change="onChange"/>

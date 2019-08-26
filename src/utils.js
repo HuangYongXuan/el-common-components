@@ -1,6 +1,40 @@
 import validator from 'el-form-validator';
 import {Message} from 'element-ui';
 
+Date.prototype.format = (mask) => {
+	let o = {
+		'M+': this.getMonth() + 1, //月份
+		'd+': this.getDate(), //日
+		'h+': this.getHours() % 12 === 0 ? 12 : this.getHours() % 12, //小时
+		'H+': this.getHours(), //小时
+		'm+': this.getMinutes(), //分
+		's+': this.getSeconds(), //秒
+		'q+': Math.floor((this.getMonth() + 3) / 3), //季度
+		'S': this.getMilliseconds() //毫秒
+	};
+	let week = {
+		'0': '/u65e5',
+		'1': '/u4e00',
+		'2': '/u4e8c',
+		'3': '/u4e09',
+		'4': '/u56db',
+		'5': '/u4e94',
+		'6': '/u516d'
+	};
+	if (/(y+)/.test(mask)) {
+		mask = mask.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+	}
+	if (/(E+)/.test(mask)) {
+		mask = mask.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? '/u661f/u671f' : '/u5468') : '') + week[this.getDay() + '']);
+	}
+	for (let k in o) {
+		if (new RegExp('(' + k + ')').test(mask)) {
+			mask = mask.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
+		}
+	}
+	return mask;
+};
+
 /**
  * 生成form验证规则
  *
@@ -12,19 +46,19 @@ import {Message} from 'element-ui';
  * @return                  {Array}
  */
 export const generateRule = (required, rules, requiredMsg = '请输入', customMessages = {}, customNames = {}) => {
-    return [
-        {
-            required: required,
-            message: requiredMsg,
-            trigger: 'blur'
-        }, {
-            rules: rules,
-            customMessages: customMessages,
-            customNames: customNames,
-            validator: validator.verification,
-            trigger: 'blur'
-        }
-    ];
+	return [
+		{
+			required: required,
+			message: requiredMsg,
+			trigger: 'blur'
+		}, {
+			rules: rules,
+			customMessages: customMessages,
+			customNames: customNames,
+			validator: validator.verification,
+			trigger: 'blur'
+		}
+	];
 };
 
 /**
@@ -35,7 +69,7 @@ export const generateRule = (required, rules, requiredMsg = '请输入', customM
  * @return          {string}
  */
 export const generateUuid = (prefix = '', size = 6) => {
-    return prefix + Math.random().toString(36).slice(2, size + 2);
+	return prefix + Math.random().toString(36).slice(2, size + 2);
 };
 
 /**
@@ -50,17 +84,17 @@ export const generateUuid = (prefix = '', size = 6) => {
  * @return                  {Promise<Promise<*>|*>}
  */
 export const handelHttpResponse = async (conditions, response, showSuccess = false, successMsg = undefined, showError = true, errorMsg = undefined) => {
-    if (conditions && conditions()) {
-        if (showSuccess) {
-            Message.success(successMsg || response.data.msg || response.data.data || '操作成功');
-        }
-        return await response.data;
-    } else {
-        if (showError) {
-            Message.error(errorMsg || response.data.msg || response.data.data);
-        }
-        return Promise.reject(response);
-    }
+	if (conditions && conditions()) {
+		if (showSuccess) {
+			Message.success(successMsg || response.data.msg || response.data.data || '操作成功');
+		}
+		return await response.data;
+	} else {
+		if (showError) {
+			Message.error(errorMsg || response.data.msg || response.data.data);
+		}
+		return Promise.reject(response);
+	}
 };
 
 /**
@@ -70,19 +104,19 @@ export const handelHttpResponse = async (conditions, response, showSuccess = fal
  * @return          {Object | Array}
  */
 export const deepClone = (object) => {
-    let result = Array.isArray(object) ? [] : {};
-    for (let key in object) {
-        if (object.hasOwnProperty(key)) {
-            if (object[key] instanceof File) {
-                result[key] = object[key];
-            } else if (typeof object[key] === 'object' && object[key]) {
-                result[key] = deepClone(object[key]);
-            } else {
-                result[key] = object[key];
-            }
-        }
-    }
-    return result;
+	let result = Array.isArray(object) ? [] : {};
+	for (let key in object) {
+		if (object.hasOwnProperty(key)) {
+			if (object[key] instanceof File) {
+				result[key] = object[key];
+			} else if (typeof object[key] === 'object' && object[key]) {
+				result[key] = deepClone(object[key]);
+			} else {
+				result[key] = object[key];
+			}
+		}
+	}
+	return result;
 };
 
 /**
@@ -93,21 +127,25 @@ export const deepClone = (object) => {
  * @return              {Object | Array}
  */
 export const objectDiff = (object, diffObject) => {
-    let newObject = typeof object !== 'object' ? [] : {};
-    if (typeof object === typeof diffObject) {
-        for (let key in object) {
-            if (object[key] !== diffObject[key]) {
-                newObject[key] = object[key];
-            }
-        }
-    }
-    return newObject;
+	let newObject = typeof object !== 'object' ? [] : {};
+	if (typeof object === typeof diffObject) {
+		for (let key in object) {
+			if (object[key] !== diffObject[key]) {
+				newObject[key] = object[key];
+			}
+		}
+	}
+	return newObject;
+};
+
+export const getToMonthUnix = () => {
+
 };
 
 export default {
-    generateRule,
-    generateUuid,
-    handelHttpResponse,
-    deepClone,
-    objectDiff
+	generateRule,
+	generateUuid,
+	handelHttpResponse,
+	deepClone,
+	objectDiff
 };
