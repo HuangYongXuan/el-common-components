@@ -1,7 +1,7 @@
 import validator from 'el-form-validator';
 import {Message} from 'element-ui';
 
-Date.prototype.format = (mask) => {
+Date.prototype.format = function (mask) {
 	let o = {
 		'M+': this.getMonth() + 1, //月份
 		'd+': this.getDate(), //日
@@ -138,8 +138,13 @@ export const objectDiff = (object, diffObject) => {
 	return newObject;
 };
 
+/**
+ * 获取当前月的UNIX时间戳
+ * @return {number}
+ */
 export const getToMonthUnix = () => {
-
+	let dateStr = new Date().format('yyyy.mm.01');
+	return new Date(dateStr).getTime();
 };
 
 export default {
@@ -147,5 +152,6 @@ export default {
 	generateUuid,
 	handelHttpResponse,
 	deepClone,
-	objectDiff
+	objectDiff,
+    getToMonthUnix
 };
