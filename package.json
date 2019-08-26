@@ -1,15 +1,17 @@
 {
   "name": "el-common-components",
   "description": "一些常用的方法和组件",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "src/index.js",
   "repository": "https://github.com/HuangYongXuan/el-common-components.git",
   "author": "hyx <754060604@qq.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "vue": "^2.6.10",
-    "el-form-validator": "^1.0.11",
-    "element-ui": "^2.11.1"
+    "element-ui": "^2.11.1",
+    "vue": "^2.6.10"
+  },
+  "dependencies": {
+    "el-form-validator": "^1.0.11"
   }
 }
