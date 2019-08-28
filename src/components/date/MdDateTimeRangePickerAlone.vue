@@ -9,7 +9,7 @@
 </template>
 
 <script>
-	import MdMVVMObject from 'el-common-components/src/mixins/MdMVVMObject';
+	import MdMVVMObject from '../../mixins/MdMVVMObject';
 
 	export default {
 		name: "MdDateTimeRangePickerAlone",
@@ -36,17 +36,26 @@
 				type: String,
 				default: 'endTime'
 			},
-			format: String,
+			format: {
+				type: String,
+                default: 'yyyy-MM-dd'
+            },
 			valueFormat: {
 				type: String,
-				default: 'timestamp'
+				default: 'yyyy-MM-dd'
 			},
 			rangeSeparator: {
 				type: String,
 				default: '至'
 			},
-			startPlaceholder: String,
-			endPlaceholder: String,
+			startPlaceholder: {
+				type: String,
+                default: '开始时间'
+            },
+			endPlaceholder: {
+				type: String,
+				default: '结束时间'
+            },
 			size: String,
 			disabled: Boolean,
 			options: {
