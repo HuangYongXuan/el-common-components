@@ -1,13 +1,15 @@
 <template>
-    <el-pagination :total="total"
-                   :page-size.sync="pageSize"
-                   :current-page.sync="pageNum"
-                   :layout="layout"
-                   :page-sizes="sizes"
-                   class="pagination"
-                   ref="pageInfo"
-                   @size-change="handleSizeChange"
-                   @current-change="handleCurrentChange"/>
+    <div class="md-pagination">
+        <el-pagination
+            :total="total"
+            :page-size.sync="pageSize"
+            :current-page.sync="pageNum"
+            :layout="layout"
+            :page-sizes="sizes"
+            ref="pageInfo"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"/>
+    </div>
 </template>
 
 <script>
@@ -36,19 +38,24 @@
 				this.$emit('update:size', this.pageSize);
 			}
 		},
-        methods: {
+		methods: {
 			handleSizeChange(val) {
 				this.pageSize = val;
-				this.$emit('change')
+				this.$emit('change');
 			},
 			handleCurrentChange(val) {
 				this.pageNum = val;
 				this.$emit('change');
 			}
-        }
+		}
 	};
 </script>
 
 <style scoped>
-
+    .md-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+    }
 </style>
