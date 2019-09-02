@@ -139,12 +139,22 @@ export const objectDiff = (object, diffObject) => {
 };
 
 /**
- * 获取当前月的UNIX时间戳
+ * 获取前月开始的UNIX时间戳
  * @return {number}
  */
 export const getToMonthUnix = () => {
 	let dateStr = new Date().format('yyyy.MM.01');
 	return new Date(dateStr).getTime();
+};
+
+/**
+ * 获取object的长度
+ *
+ * @param o 		{Object}
+ * @return 			{number}
+ */
+export const objectLength = (o) => {
+	return Object.keys(o).length;
 };
 
 export default {
@@ -153,5 +163,6 @@ export default {
 	handelHttpResponse,
 	deepClone,
 	objectDiff,
-    getToMonthUnix
+    getToMonthUnix,
+	objectLength
 };
