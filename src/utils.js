@@ -1,5 +1,5 @@
 import validator from 'el-form-validator';
-import {Message} from 'element-ui';
+import {Message, MessageBox} from 'element-ui';
 
 Date.prototype.format = function (mask) {
 	let o = {
@@ -157,12 +157,32 @@ export const objectLength = (o) => {
 	return Object.keys(o).length;
 };
 
+/**
+ * confirm 确认框
+ *
+ * @param m			{string}
+ * @param t			{string}
+ * @return {Promise<MessageBoxData>}
+ */
+export const confirmMessage = (m, t = '提示！') => {
+	return MessageBox.confirm(
+		m,
+		t,
+		{
+			confirmButtonText: '确定',
+			cancelButtonText: '取消',
+			type: 'warning'
+		}
+	);
+};
+
 export default {
 	generateRule,
 	generateUuid,
 	handelHttpResponse,
 	deepClone,
 	objectDiff,
-    getToMonthUnix,
-	objectLength
+	getToMonthUnix,
+	objectLength,
+	confirmMessage
 };
