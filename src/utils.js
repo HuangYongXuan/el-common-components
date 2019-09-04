@@ -160,18 +160,19 @@ export const objectLength = (o) => {
 /**
  * confirm 确认框
  *
- * @param m			{string}
- * @param t			{string}
+ * @param message			{string}
+ * @param title				{string}
+ * @param type				{string}
  * @return {Promise<MessageBoxData>}
  */
-export const confirmMessage = (m, t = '提示！') => {
+export const confirmMessage = (message, title = '提示！', type = 'warning') => {
 	return MessageBox.confirm(
-		m,
-		t,
+		message,
+		title,
 		{
 			confirmButtonText: '确定',
 			cancelButtonText: '取消',
-			type: 'warning'
+			type
 		}
 	);
 };
