@@ -177,6 +177,39 @@ export const confirmMessage = (message, title = '提示！', type = 'warning') =
 	);
 };
 
+/**
+ * 将vue-router的query转换里面数据的类型 并返回一个新的Object
+ * @param query			{Object}		需要转换的数据
+ * @param types			{Object}		转换数据的值的类型
+ * @return 				{Object}
+ */
+export const urlQueryDataTransferToData = (query = {}, types = {}) => {
+	let format = (val, type) => {
+		if (val === undefined || val === null) return val;
+		switch (type) {
+			case 'int':
+				return parseInt(val);
+			case 'float':
+				return parseFloat(val);
+			case 'string':
+				return val + '';
+			case 'bool':
+				return ['true', '1', 'on', 'yes', 'accept'].indexOf(val) !== -1;
+			default:
+				return val;
+		}
+	};
+	let newData = {};
+	for (let key in types) {
+		let data = format(query[key], types[key]);
+		if (data === undefined || isNaN(data)) {
+			continue;
+		}
+		newData[key] = data;
+	}
+	return newData;
+};
+
 export default {
 	generateRule,
 	generateUuid,
@@ -185,5 +218,6 @@ export default {
 	objectDiff,
 	getToMonthUnix,
 	objectLength,
-	confirmMessage
+	confirmMessage,
+	urlQueryDataTransferToData
 };
