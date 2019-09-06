@@ -43,18 +43,20 @@ Date.prototype.format = function (mask) {
  * @param customMessages    {Object}            自定义错误消息
  * @param customNames       {Object}            自定义字段名称
  * @param requiredMsg       {string}            必须的错误消息
+ * @param messages			{String}			统一的错误提示
  * @return                  {Array}
  */
-export const generateRule = (required, rules, requiredMsg = '请输入', customMessages = {}, customNames = {}) => {
+export const generateRule = (required, rules, requiredMsg = '请输入', customMessages = {}, customNames = {}, messages) => {
 	return [
 		{
-			required: required,
+			required,
 			message: requiredMsg,
 			trigger: 'blur'
 		}, {
-			rules: rules,
-			customMessages: customMessages,
-			customNames: customNames,
+			rules,
+			customMessages,
+			customNames,
+			messages,
 			validator: validator.verification,
 			trigger: 'blur'
 		}
