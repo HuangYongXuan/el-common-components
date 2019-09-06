@@ -46,7 +46,7 @@ Date.prototype.format = function (mask) {
  * @param messages			{String}			统一的错误提示
  * @return                  {Array}
  */
-export const generateRule = (required, rules, requiredMsg = '请输入', customMessages = {}, customNames = {}, messages) => {
+export const generateRule = (required, rules, requiredMsg = '请输入', messages = undefined, customMessages = {}, customNames = {}) => {
 	return [
 		{
 			required,
