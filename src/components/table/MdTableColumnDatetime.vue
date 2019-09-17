@@ -18,12 +18,16 @@
 		methods: {
 			html (row) {
 				let datetime = row[this.prop];
-				let arr = datetime.split(' ');
-				let html = '';
-				for (let k in arr) {
-					html += `<p class="__p">${arr[k]}</p>`
-				}
-				return html;
+				try {
+                    let arr = datetime.split(' ');
+                    let html = '';
+                    for (let k in arr) {
+                        html += `<p class="__p">${arr[k]}</p>`
+                    }
+                    return html;
+                } catch (e) {
+                    return datetime;
+                }
 			}
 		}
 	}
