@@ -32,20 +32,20 @@
 			async pageNum() {
 				await this.$nextTick();
 				this.$emit('update:page', this.pageNum);
+                this.$emit('change');
 			},
 			async pageSize() {
 				await this.$nextTick();
 				this.$emit('update:size', this.pageSize);
+                this.$emit('change');
 			}
 		},
 		methods: {
 			handleSizeChange(val) {
 				this.pageSize = val;
-				this.$emit('change');
 			},
 			handleCurrentChange(val) {
 				this.pageNum = val;
-				this.$emit('change');
 			}
 		}
 	};
