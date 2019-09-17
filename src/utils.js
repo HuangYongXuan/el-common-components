@@ -212,6 +212,22 @@ export const urlQueryDataTransferToData = (query = {}, types = {}) => {
 	return newData;
 };
 
+/**
+ * 格式化page
+ *
+ * @param params
+ * @returns {any}
+ */
+export const formatQueryPage = (params) => {
+	let data = Object.assign({}, params);
+
+	if (data.page) {
+		data.page -= 1;
+	}
+
+	return data;
+};
+
 export default {
 	generateRule,
 	generateUuid,
@@ -221,5 +237,6 @@ export default {
 	getToMonthUnix,
 	objectLength,
 	confirmMessage,
-	urlQueryDataTransferToData
+	urlQueryDataTransferToData,
+	formatQueryPage
 };
