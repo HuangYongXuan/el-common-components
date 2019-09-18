@@ -1,10 +1,10 @@
 <template>
     <div class="md-date-time-range-picker-alone">
         <el-date-picker v-model="data[startKey]" :type="type" :value-format="valueFormat" :format="format"
-                        :placeholder="startPlaceholder" size="size" :disabled="disabled" :picker-options="options"/>
+                        :placeholder="startPlaceholder" :size="size" :disabled="disabled" :picker-options="options"/>
         <span>{{rangeSeparator}}</span>
         <el-date-picker v-model="data[endKey]" :type="type" :value-format="valueFormat" :format="format"
-                        :placeholder="endPlaceholder" size="size" :disabled="disabled" :picker-options="options"/>
+                        :placeholder="endPlaceholder" :size="size" :disabled="disabled" :picker-options="options"/>
     </div>
 </template>
 
