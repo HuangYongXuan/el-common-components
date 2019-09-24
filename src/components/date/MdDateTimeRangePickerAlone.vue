@@ -9,41 +9,41 @@
 </template>
 
 <script>
-	import MdMVVMObject from '../../mixins/MdMVVMObject';
+    import MdMVVMObject from '../../mixins/MdMVVMObject';
 
-	export default {
-		name: "MdDateTimeRangePickerAlone",
-		mixins: [MdMVVMObject],
-		props: {
-			value: {
-				type: Object,
-				default: () => {
-					return {};
-				}
-			},
-			type: {
-				type: String,
-				default: 'date',
-				validator: (val => {
-					return ['date', 'datetime'].indexOf(val) !== -1;
-				})
-			},
-			startKey: {
-				type: String,
-				default: 'startTime'
-			},
-			endKey: {
-				type: String,
-				default: 'endTime'
-			},
-			format: {
-				type: String,
+    export default {
+        name: "MdDateTimeRangePickerAlone",
+        mixins: [MdMVVMObject],
+        props: {
+            value: {
+                type: Object,
+                default: () => {
+                    return {};
+                }
+            },
+            type: {
+                type: String,
+                default: 'date',
+                validator: (val => {
+                    return ['date', 'datetime'].indexOf(val) !== -1;
+                })
+            },
+            startKey: {
+                type: String,
+                default: 'startTime'
+            },
+            endKey: {
+                type: String,
+                default: 'endTime'
+            },
+            format: {
+                type: String,
                 default: 'yyyy-MM-dd'
             },
-			valueFormat: {
-				type: String,
-				default: 'yyyy-MM-dd'
-			},
+            valueFormat: {
+                type: String | Boolean,
+                default: 'yyyy-MM-dd'
+            },
             startValueFormat: {
                 type: String,
                 default: 'yyyy-MM-dd'
@@ -52,31 +52,31 @@
                 type: String,
                 default: 'yyyy-MM-dd'
             },
-			rangeSeparator: {
-				type: String,
-				default: '至'
-			},
-			startPlaceholder: {
-				type: String,
+            rangeSeparator: {
+                type: String,
+                default: '至'
+            },
+            startPlaceholder: {
+                type: String,
                 default: '开始时间'
             },
-			endPlaceholder: {
-				type: String,
-				default: '结束时间'
+            endPlaceholder: {
+                type: String,
+                default: '结束时间'
             },
-			size: String,
-			disabled: Boolean,
-			options: {
-				type: Object,
-				default: () => {
-					return {};
-				}
-			}
-		},
-		data() {
-			return {}
-		}
-	}
+            size: String,
+            disabled: Boolean,
+            options: {
+                type: Object,
+                default: () => {
+                    return {};
+                }
+            }
+        },
+        data() {
+            return {}
+        }
+    }
 </script>
 
 <style scoped lang="scss">
