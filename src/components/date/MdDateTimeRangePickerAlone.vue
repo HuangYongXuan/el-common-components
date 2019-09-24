@@ -1,9 +1,9 @@
 <template>
     <div class="md-date-time-range-picker-alone">
-        <el-date-picker v-model="data[startKey]" :type="type" :value-format="valueFormat" :format="format"
+        <el-date-picker v-model="data[startKey]" :type="type" :value-format="valueFormat || startValueFormat" :format="format"
                         :placeholder="startPlaceholder" :size="size" :disabled="disabled" :picker-options="options"/>
         <span>{{rangeSeparator}}</span>
-        <el-date-picker v-model="data[endKey]" :type="type" :value-format="valueFormat" :format="format"
+        <el-date-picker v-model="data[endKey]" :type="type" :value-format="valueFormat || endValueFormat" :format="format"
                         :placeholder="endPlaceholder" :size="size" :disabled="disabled" :picker-options="options"/>
     </div>
 </template>
@@ -44,6 +44,14 @@
 				type: String,
 				default: 'yyyy-MM-dd'
 			},
+            startValueFormat: {
+                type: String,
+                default: 'yyyy-MM-dd'
+            },
+            endValueFormat: {
+                type: String,
+                default: 'yyyy-MM-dd'
+            },
 			rangeSeparator: {
 				type: String,
 				default: '至'
