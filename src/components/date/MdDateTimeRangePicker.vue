@@ -6,68 +6,77 @@
 </template>
 
 <script>
-	import MdMVVMObject from '../../mixins/MdMVVMObject';
+    import MdMVVMObject from '../../mixins/MdMVVMObject';
 
-	export default {
-		name: 'MdDateTimeRangePicker',
-		mixins: [MdMVVMObject],
-		props: {
-			value: {
-				type: Object,
-				default: () => {
-					return {};
-				}
-			},
-			type: {
-				type: String,
-				default: 'daterange',
-				validator: (val => {
-					return ['daterange', 'datetimerange'].indexOf(val) !== -1;
-				})
-			},
-			startKey: {
-				type: String,
-				default: 'startTime'
-			},
-			endKey: {
-				type: String,
-				default: 'endTime'
-			},
-			format: String,
-			valueFormat: {
-				type: String,
-				default: 'timestamp'
-			},
-			rangeSeparator: String,
-			startPlaceholder: String,
-			endPlaceholder: String,
-            size: String,
-			disabled: Boolean,
-			options: {
-				type: Object,
+    export default {
+        name: 'MdDateTimeRangePicker',
+        mixins: [MdMVVMObject],
+        props: {
+            value: {
+                type: Object,
                 default: () => {
-                	return {};
+                    return {};
+                }
+            },
+            type: {
+                type: String,
+                default: 'daterange',
+                validator: (val => {
+                    return ['daterange', 'datetimerange'].indexOf(val) !== -1;
+                })
+            },
+            startKey: {
+                type: String,
+                default: 'startTime'
+            },
+            endKey: {
+                type: String,
+                default: 'endTime'
+            },
+            format: String,
+            valueFormat: {
+                type: String,
+                default: 'timestamp'
+            },
+            rangeSeparator: String,
+            startPlaceholder: String,
+            endPlaceholder: String,
+            size: String,
+            disabled: Boolean,
+            options: {
+                type: Object,
+                default: () => {
+                    return {};
                 }
             }
-		},
-		data() {
-			return {
-				datetime: []
-			};
-		},
-		mounted() {
-			this.datetime = [
-				this.data[this.startKey],
-				this.data[this.endKey]
-			];
-		},
+        },
+        data() {
+            return {
+                datetime: []
+            };
+        },
+        mounted() {
+            this.datetime = [
+                this.data[this.startKey],
+                this.data[this.endKey]
+            ];
+        },
         methods: {
-			onChange (date) {
-				this.data[this.startKey] = date[0];
-				this.data[this.endKey] = date[1];
+            onChange(date) {
+                this.data[this.startKey] = date[0];
+                this.data[this.endKey] = date[1];
+            }
+        },
+        watch: {
+            value: {
+                deep: true,
+                immediate: true,
+                handler(n) {
+                    this.datetime = [n[this.startKey] || '', n[this.endKey] || ''];
+                }
             }
         }
-	};
+    };
 </script>
 
 <style scoped>
