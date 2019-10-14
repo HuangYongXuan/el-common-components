@@ -57,8 +57,8 @@
         },
         mounted() {
             this.datetime = [
-                this.data[this.startKey],
-                this.data[this.endKey]
+                this.data[this.startKey] || '',
+                this.data[this.endKey] || ''
             ];
         },
         methods: {
