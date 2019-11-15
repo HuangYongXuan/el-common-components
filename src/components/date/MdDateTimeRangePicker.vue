@@ -63,8 +63,13 @@
         },
         methods: {
             onChange(date) {
-                this.data[this.startKey] = date[0];
-                this.data[this.endKey] = date[1];
+                if (date && date.length >= 2) {
+                    this.data[this.startKey] = date[0];
+                    this.data[this.endKey] = date[1];
+                } else {
+                    this.data[this.startKey] = undefined;
+                    this.data[this.endKey] = undefined;
+                }
             }
         },
         watch: {
